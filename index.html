@@ -306,7 +306,7 @@ footer{padding:28px;text-align:center;color:var(--muted);border-top:1px solid rg
 </div>
 
 <footer>
-  © 2025 • Muhammad Arifin Ilham — Crafted with neon.
+  © 2025 • Muhammad Arifin Ilham — 17 July 2010.
 </footer>
 
 <script>
@@ -338,19 +338,6 @@ document.addEventListener('DOMContentLoaded', function(){
     btnPortfolio.addEventListener('click', ()=> {
       const p = qs('#portfolio');
       if(p) window.scrollTo({top: p.offsetTop - 72, behavior:'smooth'});
-    });
-  }
-
-  /* Download CV */
-  const cvBtn = qs('#downloadCvBtn');
-  if(cvBtn){
-    cvBtn.addEventListener('click', ()=>{
-      // try to open files/CV.pdf; if absent, show friendly note
-      const url = 'files/CV.pdf';
-      fetch(url, {method:'HEAD'}).then(res=>{
-        if(res.ok) window.open(url, '_blank');
-        else alert('CV belum tersedia. Letakkan file di files/CV.pdf atau ubah path di script.');
-      }).catch(()=> alert('CV belum tersedia. Letakkan file di files/CV.pdf atau ubah path di script.'));
     });
   }
 
