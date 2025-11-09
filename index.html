@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Portofolio — Muhammad Arifin Ilham</title>
+
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --bg-1: #05060a;
+  --bg-2: #08101a;
+  --panel: rgba(255,255,255,0.03);
+  --muted: #9aa6b2;
+  --neon-cyan: #00f0ff;
+  --neon-purple: #c200ff;
+  --white: #eaf2ff;
+  --radius: 14px;
+  --header-h:76px;
+  --ease: cubic-bezier(.2,.9,.3,1);
+}
+
+/* Reset */
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%}
+body{
+  font-family:"Space+Grotesk",system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial;
+  background: linear-gradient(180deg,var(--bg-1),var(--bg-2));
+  color:var(--white);
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  overflow-y:auto;
+  scroll-behavior:smooth;
+}
+
+/* Header */
+header{
+  position:fixed;inset:0 0 auto 0;height:var(--header-h);display:flex;align-items:center;justify-content:space-between;
+  padding:12px 28px;background:linear-gradient(180deg,rgba(8,12,20,0.45),rgba(8,12,20,0.25));
+  backdrop-filter: blur(8px);z-index:120;border-bottom:1px solid rgba(255,255,255,0.03);
+}
+.logo{font-family:"Orbitron",sans-serif;letter-spacing:1px;color:var(--neon-cyan);font-weight:600;font-size:18px}
+.nav{display:flex;gap:14px;align-items:center}
+.nav a{color:var(--muted);text-decoration:none;padding:8px 12px;border-radius:10px;font-weight:600;transition:all .22s var(--ease)}
+.nav a:hover{color:var(--white);background:linear-gradient(90deg,var(--neon-cyan),var(--neon-purple));box-shadow:0 10px 30px rgba(0,240,255,0.08)}
+.nav a.active{color:var(--white);background:linear-gradient(90deg,var(--neon-cyan),var(--neon-purple));box-shadow:0 12px 30px rgba(0,240,255,0.09)}
+
+/* Layout containers */
+main{padding-top:calc(var(--header-h) + 10px);}
+
+/* HERO (split horizontal) */
+.hero{
+  min-height:calc(100vh - var(--header-h));
+  display:grid;grid-template-columns: 1fr 1fr;gap:36px;align-items:center;padding:48px;
+}
+@media (max-width:980px){ .hero{grid-template-columns:1fr; padding:28px 20px} }
+
+.hero-left{
+  display:flex;align-items:center;justify-content:center; perspective:1200px;
+}
+.frame{
+  width:360px;height:480px;border-radius:18px;overflow:hidden;border:2px solid rgba(255,255,255,0.04);
+  box-shadow: 0 20px 60px rgba(0,0,0,0.6), 0 0 48px rgba(0,240,255,0.03);
+  background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+  transition: transform .28s var(--ease), box-shadow .28s var(--ease);
+}
+.frame img{width:100%;height:100%;object-fit:cover;display:block}
+
+.frame:hover{ transform: translateY(-6px) rotateZ(-0.5deg) scale(1.02); box-shadow: 0 30px 80px rgba(0,0,0,0.7), 0 0 70px rgba(194,0,255,0.08) }
+
+/* Neon rings behind photo */
+.rings{
+  position:absolute;pointer-events:none;left:6%;top:12%;width:520px;height:520px;mix-blend-mode:overlay;opacity:0.14;
+  background:
+    radial-gradient(circle at 25% 30%, rgba(0,240,255,0.25), transparent 8%),
+    radial-gradient(circle at 70% 70%, rgba(194,0,255,0.22), transparent 10%);
+  filter: blur(40px);
+  z-index:0;
+}
+
+/* hero-right */
+.hero-right{position:relative;padding:6% 2%}
+.kicker{color:var(--muted);font-weight:700;letter-spacing:1px;text-transform:uppercase;font-size:12px}
+.title{font-family:"Orbitron",sans-serif;font-size:44px;line-height:1;color:var(--white);margin:10px 0}
+.subtitle{color:var(--muted);max-width:680px;margin-bottom:18px}
+.cta{display:flex;gap:12px;flex-wrap:wrap}
+.btn{
+  padding:10px 16px;border-radius:12px;border:none;font-weight:700;cursor:pointer;transition:all .26s var(--ease);
+  box-shadow:0 8px 30px rgba(0,0,0,0.5)
+}
+.btn.primary{
+  background:linear-gradient(90deg,var(--neon-cyan),var(--neon-purple)); color:#04060a;
+  box-shadow:0 10px 40px rgba(0,240,255,0.08), 0 0 20px rgba(194,0,255,0.04);
+}
+.btn.ghost{
+  background:transparent;border:1px solid rgba(255,255,255,0.06);color:var(--white)
+}
+.btn:hover{transform:translateY(-4px)}
+
+/* ABOUT (grid 2 cols) */
+.about{
+  display:grid;grid-template-columns: 1fr 420px;gap:40px;align-items:start;padding:48px 8%;
+  background: linear-gradient(180deg, rgba(255,255,255,0.01), transparent);
+  margin-top:12px;border-radius:18px;margin-left:8%;margin-right:8%;
+}
+@media (max-width:980px){ .about{grid-template-columns:1fr;padding:28px;margin:20px} }
+
+.about .left h2{font-family:"Orbitron",sans-serif;color:var(--neon-cyan);font-size:28px;margin-bottom:12px}
+.about p{color:var(--muted);line-height:1.7}
+.skills{display:flex;flex-direction:column;gap:12px}
+.skill{
+  display:flex;flex-direction:column;gap:6px;background:rgba(255,255,255,0.02);padding:12px;border-radius:12px;
+  border:1px solid rgba(255,255,255,0.02)
+}
+
+
+/* PORTFOLIO (masonry-like using CSS columns for variety) */
+.portfolio{
+  padding:56px 6%;
+}
+.portfolio-header{display:flex;justify-content:space-between;align-items:center;gap:18px;margin-bottom:18px}
+.portfolio-header h2{font-family:"Orbitron",sans-serif;color:var(--neon-purple);font-size:28px}
+.filters{display:flex;gap:10px;flex-wrap:wrap}
+.filter-pill{
+  padding:8px 14px;border-radius:999px;border:1px solid rgba(255,255,255,0.04);
+  color:var(--muted);background:transparent;font-weight:700;cursor:pointer;transition:all .28s var(--ease);
+}
+.filter-pill.active{background:linear-gradient(90deg,var(--neon-cyan),var(--neon-purple));color:#07060a;box-shadow:0 12px 36px rgba(0,240,255,0.06)}
+
+.masonry{
+  column-count:3;column-gap:20px;
+}
+@media (max-width:1100px){ .masonry{column-count:2} }
+@media (max-width:680px){ .masonry{column-count:1} }
+
+.card{
+  break-inside:avoid; margin:0 0 20px; border-radius:14px; overflow:hidden; position:relative;
+  transform: translateY(12px); opacity:0; transition: all .6s var(--ease);
+  background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+  border: 1px solid rgba(255,255,255,0.03);
+}
+.card.show{transform:translateY(0);opacity:1}
+.card .thumb{display:block; width:100%; height:380px; object-fit:cover; transition: transform .45s var(--ease), filter .3s}
+.card:hover .thumb{transform:scale(1.04);filter:brightness(.85)}
+.card .meta{position:absolute;left:12px;bottom:12px;padding:10px 12px;border-radius:10px;background:linear-gradient(90deg, rgba(0,0,0,0.6), transparent);color:var(--white);font-weight:700;backdrop-filter: blur(4px)}
+
+/* Lightbox */
+.lb{
+  position:fixed;inset:0;display:none;align-items:center;justify-content:center;background:rgba(0,0,0,0.85);z-index:999;
+  padding:24px;
+}
+.lb.show{display:flex}
+.lb img{max-width:92%;max-height:86vh;border-radius:10px;box-shadow:0 30px 80px rgba(0,0,0,0.8)}
+.lb .close{position:absolute;top:22px;right:22px;background:transparent;border:none;color:var(--white);font-size:28px;cursor:pointer}
+
+/* footer */
+footer{padding:28px;text-align:center;color:var(--muted);border-top:1px solid rgba(255,255,255,0.02);margin-top:40px}
+
+/* small helpers */
+.center{display:flex;align-items:center;justify-content:center}
+.fade{opacity:0;transform:translateY(10px);transition:all .6s var(--ease)}
+.fade.show{opacity:1;transform:translateY(0)}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">ARIFIN</div>
+  <nav class="nav" aria-label="Main navigation">
+    <a href="#hero" class="navlink">Beranda</a>
+    <a href="#about" class="navlink">Tentang</a>
+    <a href="#portfolio" class="navlink">Portofolio</a>
+  </nav>
+</header>
+
+<main>
+  <!-- Neon decorative rings -->
+  <div class="rings" aria-hidden="true"></div>
+
+  <!-- HERO split -->
+  <section id="hero" class="hero" aria-label="Beranda">
+    <div class="hero-left center" style="position:relative;">
+      <div class="frame" id="photoFrame">
+        <img src="image/ME.jpg" alt="Foto Muhammad Arifin Ilham" id="mainPhoto">
+      </div>
+    </div>
+
+    <div class="hero-right" aria-hidden="false">
+      <div class="kicker">PORTOFOLIO</div>
+      <h1 class="title">Muhammad Arifin Ilham</h1>
+      <p class="subtitle">Mengekspresikan apapun melalui karya inovatif, karena hanya dengan itu aku merasa tenang.</p>
+
+      <div class="cta">
+        <button class="btn primary" id="openPortfolioBtn">My Journey</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about" class="about" aria-label="Tentang">
+    <div class="left">
+      <h2>ABSTRAK</h2>
+      <p>Hanya seorang pelajar yang masih terus belajar tentang hidup, tentang waktu, dan tentang gimana caranya jadi lebih baik dari kemarin.</p>
+    </div>
+
+    <aside>
+      <div style="background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent);padding:18px;border-radius:12px;">
+        <h3 style="color:var(--neon-cyan);margin-bottom:12px">BASIC SKILLS</h3>
+        <div class="skills">
+          <div class="skill">
+            <div class="label">Desain Poster</div>
+            <div class="bar"><i data-val="92"></i></div>
+          </div>
+          <div class="skill">
+            <div class="label">Branding</div>
+            <div class="bar"><i data-val="86"></i></div>
+        </div>
+      </div>
+    </aside>
+  </section>
+
+  <!-- PORTFOLIO -->
+  <section id="portfolio" class="portfolio" aria-label="Portofolio">
+    <div class="portfolio-header fade">
+      <h2>Journey</h2>
+      <div class="filters">
+        <button class="filter-pill active" data-filter="*">Semua</button>
+        <button class="filter-pill" data-filter="poster">Poster</button>
+        <button class="filter-pill" data-filter="branding">Branding</button>
+      </div>
+    </div>
+
+    <div class="masonry" id="masonry">
+      <!-- sample cards (add/replace images in images/) -->
+      <article class="card" data-tags="poster">
+        <img class="thumb" src="image/P1.jpg" alt="Poster 1">
+        <div class="meta">Poster • Produk</div>
+      </article>
+
+      <article class="card" data-tags="poster">
+        <img class="thumb" src="image/P2.png" alt="Poster 1">
+        <div class="meta">Poster • Grafis</div>
+      </article>
+
+      <article class="card" data-tags="poster">
+        <img class="thumb" src="image/P3.png" alt="Poster 1">
+        <div class="meta">Poster • Peringatan Hari Tertentu</div>
+      </article>
+
+      <article class="card" data-tags="poster">
+        <img class="thumb" src="image/P4.png" alt="Poster 1">
+        <div class="meta">Poster • Pendidikan</div>
+      </article>
+
+
+      <article class="card" data-tags="branding">
+        <img class="thumb" src="image/B1.jpg" alt="Brand 1">
+        <div class="meta">Branding • Kunjungan</div>
+      </article>
+
+      <article class="card" data-tags="branding">
+        <img class="thumb" src="image/B2.jpg" alt="Brand 1">
+        <div class="meta">Branding • Anak Anak Hebat</div>
+      </article>
+
+      <article class="card" data-tags="branding">
+        <img class="thumb" src="image/B3.jpg" alt="Brand 1">
+        <div class="meta">Branding • Lomba Debat</div>
+      </article>
+
+      <article class="card" data-tags="branding">
+        <img class="thumb" src="image/B4.jpg" alt="Brand 1">
+        <div class="meta">Branding • In Game LDBI</div>
+      </article>
+
+      <article class="card" data-tags="branding">
+        <img class="thumb" src="image/B5.jpg" alt="Brand 1">
+        <div class="meta">Branding • Forum</div>
+      </article>
+
+      <article class="card" data-tags="branding">
+        <img class="thumb" src="image/B6.jpg" alt="Brand 1">
+        <div class="meta">Branding • Pemuda Hebat</div>
+      </article>
+
+      <article class="card" data-tags="branding">
+        <img class="thumb" src="image/B7.jpg" alt="Brand 1">
+        <div class="meta">Branding • Orasi</div>
+      </article>
+
+      <article class="card" data-tags="branding">
+        <img class="thumb" src="image/B8.jpg" alt="Brand 1">
+        <div class="meta">Branding • Changer</div>
+      </article>
+    </div>
+  </section>
+
+</main>
+
+<!-- Lightbox -->
+<div id="lightbox" class="lb" role="dialog" aria-hidden="true">
+  <button class="close" id="lbClose" aria-label="Close">✕</button>
+  <img id="lbImage" src="" alt="Preview karya">
+</div>
+
+<footer>
+  © 2025 • Muhammad Arifin Ilham — Crafted with neon.
+</footer>
+
+<script>
+/* Safe startup */
+document.addEventListener('DOMContentLoaded', function(){
+
+  /* Helpers */
+  const qs = (s, root=document) => root.querySelector(s);
+  const qsa = (s, root=document) => Array.from(root.querySelectorAll(s));
+
+  /* Nav smooth + active on scroll */
+  const navLinks = qsa('nav a');
+  navLinks.forEach(a=>{
+    a.addEventListener('click', (e)=>{
+      e.preventDefault();
+      const href = a.getAttribute('href');
+      const target = document.querySelector(href);
+      if(target) {
+        window.scrollTo({top: target.offsetTop - 72, behavior:'smooth'});
+      }
+    });
+  });
+
+  /* Hero buttons */
+  const btnOpen = qs('#openPortfolioBtn') || qs('#openPortfolioBtn') ; // if any variant
+  const heroBtn = qs('#openPortfolioBtn') || qs('#openPortfolioBtn'); // safe
+  const btnPortfolio = qs('#openPortfolioBtn') || qs('#btn-portfolio') || qs('#openPortfolioBtn');
+  if(btnPortfolio){
+    btnPortfolio.addEventListener('click', ()=> {
+      const p = qs('#portfolio');
+      if(p) window.scrollTo({top: p.offsetTop - 72, behavior:'smooth'});
+    });
+  }
+
+  /* Download CV */
+  const cvBtn = qs('#downloadCvBtn');
+  if(cvBtn){
+    cvBtn.addEventListener('click', ()=>{
+      // try to open files/CV.pdf; if absent, show friendly note
+      const url = 'files/CV.pdf';
+      fetch(url, {method:'HEAD'}).then(res=>{
+        if(res.ok) window.open(url, '_blank');
+        else alert('CV belum tersedia. Letakkan file di files/CV.pdf atau ubah path di script.');
+      }).catch(()=> alert('CV belum tersedia. Letakkan file di files/CV.pdf atau ubah path di script.'));
+    });
+  }
+
+  /* Skill bars animation */
+  qsa('.skill i').forEach(el=>{
+    const val = Number(el.getAttribute('data-val')) || Number(el.parentElement.getAttribute('data-val')) || 70;
+    // animate width after short delay
+    setTimeout(()=> el.style.width = (val>100?100:val) + '%', 400);
+  });
+
+  /* Scroll reveal for elements with .fade and .card */
+  const revealObserver = new IntersectionObserver((entries, obs)=>{
+    entries.forEach(en=>{
+      if(en.isIntersecting){
+        en.target.classList.add('show');
+        obs.unobserve(en.target);
+      }
+    });
+  }, {threshold: 0.15});
+
+  qsa('.fade').forEach(el=> revealObserver.observe(el));
+  qsa('.card').forEach(el=> revealObserver.observe(el)); // will add .show when visible
+
+  /* Staggered show for masonry items on load */
+  const masonry = qs('#masonry');
+  if(masonry){
+    const cards = qsa('.card', masonry);
+    cards.forEach((c,i)=> setTimeout(()=> c.classList.add('show'), 120 + i*110));
+  }
+
+  /* Filter pills (show category "pages" feel) */
+  const filterPills = qsa('.filter-pill');
+  filterPills.forEach(pill=>{
+    pill.addEventListener('click', ()=>{
+      filterPills.forEach(x=> x.classList.remove('active'));
+      pill.classList.add('active');
+      const filter = pill.getAttribute('data-filter');
+      const cards = qsa('.card', masonry);
+      // hide all first with smooth stagger
+      cards.forEach((card, idx)=>{
+        card.classList.remove('show');
+        setTimeout(()=> {
+          if(filter === '*' || filter === card.getAttribute('data-tags')) {
+            card.style.display = 'block';
+            setTimeout(()=> card.classList.add('show'), 40 + idx*60);
+          } else {
+            card.style.display = 'none';
+          }
+        }, 250);
+      });
+    });
+  });
+
+  /* Lightbox (click image to open) */
+  const lb = qs('#lightbox');
+  const lbImg = qs('#lbImage');
+  const lbClose = qs('#lbClose');
+  qsa('.card .thumb').forEach(img=>{
+    img.addEventListener('click', (e)=>{
+      const src = img.getAttribute('src');
+      if(!src) return;
+      lbImg.src = src;
+      lb.classList.add('show');
+      lb.setAttribute('aria-hidden','false');
+      document.body.style.overflow = 'hidden';
+    });
+  });
+  function closeLB(){
+    lb.classList.remove('show');
+    lb.setAttribute('aria-hidden','true');
+    lbImg.src = '';
+    document.body.style.overflow = '';
+  }
+  if(lbClose) lbClose.addEventListener('click', closeLB);
+  if(lb) lb.addEventListener('click', (e)=> { if(e.target === lb) closeLB(); });
+  // close on escape
+  document.addEventListener('keydown', e=> { if(e.key === 'Escape') closeLB(); });
+
+  /* Photo tilt (hero photo) - gentle, guarded */
+  const photoFrame = qs('#photoFrame');
+  if(photoFrame){
+    photoFrame.addEventListener('mousemove', (ev)=>{
+      const rect = photoFrame.getBoundingClientRect();
+      const px = (ev.clientX - rect.left) / rect.width;
+      const py = (ev.clientY - rect.top) / rect.height;
+      const rx = (py - 0.5) * 8; // rotateX
+      const ry = (px - 0.5) * -8; // rotateY
+      photoFrame.style.transform = 'rotateX(' + rx.toFixed(2) + 'deg) rotateY(' + ry.toFixed(2) + 'deg) scale(1.02)';
+    });
+    photoFrame.addEventListener('mouseleave', ()=> photoFrame.style.transform = 'rotateX(0) rotateY(0) scale(1)');
+  }
+
+  /* Nav active on scroll: highlight nearest section */
+  const sections = qsa('main section');
+  window.addEventListener('scroll', ()=>{
+    const offset = window.scrollY + 90;
+    let currentId = '';
+    sections.forEach(s=>{
+      if(offset >= s.offsetTop) currentId = s.id;
+    });
+    if(currentId){
+      navLinks.forEach(a=> a.classList.toggle('active', a.getAttribute('href') === '#' + currentId));
+    }
+  }, {passive:true});
+
+  /* Safety: fallback for images missing -> show placeholder svg */
+  document.addEventListener('error', function(e){
+    const t = e.target;
+    if(t && t.tagName === 'IMG'){
+      t.src = 'data:image/svg+xml;utf8,' + encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" width="800" height="600"><rect width="100%" height="100%" fill="#111"/><text x="50%" y="50%" fill="#999" font-family="Arial" font-size="20" text-anchor="middle">Image not found</text></svg>');
+    }
+  }, true);
+
+}); // DOMContentLoaded
+</script>
+
+</body>
+</html>
